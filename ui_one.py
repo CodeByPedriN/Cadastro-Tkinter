@@ -1,33 +1,40 @@
 import tkinter as tk
 
-def salvar_dados():
-    nome = entry_nome.get()
-    endereco = entry_endereco.get()
-    if nome and endereco:
-        with open("dados.txt", "a") as arquivo:
-            arquivo.write(f"Nome: {nome} | Endereco: {endereco}\n")
-        label_status.config(text=f'Dados salvos com sucesso!', fg="green")
-        entry_nome.delete(0, tk.END)
-        entry_endereco.delete(0, tk.END)
+def cadastrar_produto():
+    produto = entry_produto.get()
+    preço = entry_preco.get()
+    quantidade = entry_quantidade.get()
+    if produto and preço and quantidade:
+        with open("Produtos.txt", "a") as arquivo:
+            arquivo.write(f"Produto: {produto} | Preco: R${preço} | Quantidade: {quantidade}\n")
+        label_status.config(text=f'Produto cadastrado com sucesso!', fg="green")
+        entry_produto.delete(0, tk.END)
+        entry_preco.delete(0, tk.END)
+        entry_quantidade.delete(0, tk.END)
     else:
-        label_status.config(text="Digite o nome e o endereço.", fg="red")
+        label_status.config(text="Digite o produto, o preço e a quantidade.", fg="red")
 
 root = tk.Tk()
-root.title("Cadastro de Nomes e Endereços")
+root.title("Cadastro de Produtos")
 root.geometry("350x250")
 
-label_instrucao_nome = tk.Label(root, text="Digite um nome:")
-label_instrucao_nome.pack(pady=5)
-entry_nome = tk.Entry(root)
-entry_nome.pack(pady=5)
+label_instrucao_produto = tk.Label(root, text="Digite o produto:")
+label_instrucao_produto.pack(pady=5)
+entry_produto = tk.Entry(root)
+entry_produto.pack(pady=5)
 
-label_instrucao_endereco = tk.Label(root, text="Digite um endereço:")
-label_instrucao_endereco.pack(pady=5)
-entry_endereco = tk.Entry(root)
-entry_endereco.pack(pady=5)
+label_instrucao_quantidade = tk.Label(root, text="Digite a quantidade:")
+label_instrucao_quantidade.pack(pady=5)
+entry_quantidade = tk.Entry(root)
+entry_quantidade.pack(pady=5)
 
-botao_salvar = tk.Button(root, text="Salvar", command=salvar_dados)
-botao_salvar.pack(pady=10)
+label_instrucao_preco = tk.Label(root, text="Digite o preço:")
+label_instrucao_preco.pack(pady=5)
+entry_preco = tk.Entry(root)
+entry_preco.pack(pady=5)
+
+botao_cadastrar = tk.Button(root, text="Cadastrar", command=cadastrar_produto)
+botao_cadastrar.pack(pady=10)
 
 label_status = tk.Label(root, text="")
 label_status.pack(pady=5)
