@@ -5,7 +5,7 @@ def cadastrar_produto():
     preço = entry_preco.get()
     quantidade = entry_quantidade.get()
     if produto and preço and quantidade:
-        with open("Produtos.txt", "a") as arquivo:
+        with open("Banco de dados.txt", "a") as arquivo:
             arquivo.write(f"Produto: {produto} | Preco: R${preço} | Quantidade: {quantidade}\n")
         label_status.config(text=f'Produto cadastrado com sucesso!', fg="green")
         entry_produto.delete(0, tk.END)
@@ -16,7 +16,11 @@ def cadastrar_produto():
 
 root = tk.Tk()
 root.title("Cadastro de Produtos")
-root.geometry("350x250")
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+x = (screen_width - 350) // 2
+y = (screen_height - 250) // 2
+root.geometry(f"350x250+{x}+{y}")
 
 label_instrucao_produto = tk.Label(root, text="Digite o produto:")
 label_instrucao_produto.pack(pady=5)
